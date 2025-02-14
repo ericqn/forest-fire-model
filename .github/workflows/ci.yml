@@ -14,26 +14,27 @@ jobs:
     runs-on: ubuntu-latest  # Use the latest Ubuntu runner
 
     steps:
-    # Checkout the code from the repo
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # Set up Python environment
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8  # Specify Python version
+        python-version: 3.8 
 
-    # Install dependencies (assuming a requirements.txt file exists)
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    
+    - name: Check that code compiles
+      run: |
+        python -m py_compile probabilistic_agent_code/agent_playground.ipynb 
 
-    Run tests (for later when we have tests to run)
+    # Run tests (for later when we have tests to run)
     - name: Run tests
       run: |
-        pytest  # This will run all tests using pytest (make sure it's installed)
+        pytest
 
     # Linting step (optional, assuming you're using flake8 for linting)
     # - name: Lint with flake8
