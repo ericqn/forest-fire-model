@@ -1,0 +1,43 @@
+name: Python Workflow Script
+
+# Workflow script generated from chatgpt:
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the 'main' branch
+  pull_request:
+    branches:
+      - main  # Trigger on PRs targeting 'main' branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+    # Checkout the code from the repo
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Set up Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8  # Specify Python version
+
+    # Install dependencies (assuming a requirements.txt file exists)
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Run tests (for later when we have tests to run)
+    # - name: Run tests
+    #   run: |
+    #     pytest  # This will run all tests using pytest (make sure it's installed)
+
+    # Linting step (optional, assuming you're using flake8 for linting)
+    # - name: Lint with flake8
+    #   run: |
+    #     pip install flake8
+    #     flake8 .  # Lint the entire repository
+
