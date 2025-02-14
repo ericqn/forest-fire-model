@@ -30,10 +30,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # Run tests (for later when we have tests to run)
-    # - name: Run tests
-    #   run: |
-    #     pytest  # This will run all tests using pytest (make sure it's installed)
+    Run tests (for later when we have tests to run)
+    - name: Run tests
+      run: |
+        pytest  # This will run all tests using pytest (make sure it's installed)
 
     # Linting step (optional, assuming you're using flake8 for linting)
     # - name: Lint with flake8
