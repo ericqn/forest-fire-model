@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import scipy.stats as scipy
 
 """
     Given a dataframe, this function returns a dict representing the counts of observations 
@@ -90,3 +91,12 @@ def get_probabilities_given_queries(
             print('')
 
     return conditional_probabilities
+
+def get_quartiles(data, column):
+    # Calculate the quartiles (Q1, Q2, Q3)
+    quartile25 = data[column].quantile(0.25)
+    quartile50 = data[column].quantile(0.50)
+    quartile75 = data[column].quantile(0.75)
+
+    # Return the quartiles as a 3-tuple
+    return (quartile25,quartile50, quartile75)
