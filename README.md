@@ -38,6 +38,16 @@ We based our conditional probability table computations and our model off of the
   <img src="probabilistic_agent_code/data/init_bayes_model.png" alt="Initial Belief Network" width="500"/>
 </div>
 
+# Data Exploration
+First we thought it would be helpful to look at the distributions of each of our index variables (different fire indexes that assess risk).
+![ffmc](https://github.com/user-attachments/assets/cd09e66b-9c8a-4fc7-b921-83f4d5f82d1f)
+![dmc](https://github.com/user-attachments/assets/50c8247d-e03b-4426-915a-2e8580e9330b)
+![dc](https://github.com/user-attachments/assets/a0ca46a0-b14e-4776-bf53-c84ec6630faa)
+![isi](https://github.com/user-attachments/assets/8de0d2f2-fe6e-4672-bc38-6d22816b032f)\
+As you can see, although many of these models draw from the same metrics (wind, humidity, temperature, precipitation), they're distributed quite differently. This tells us they may each give us unique insights as to the risk of fire that day.\
+From what we've researched, we know that a high FFMC means litter and other cured fine fuels are more likely to ignite, so our data heavily observes instances where risk of ignition is high. DMC assesses the dryness and risk of ignition of loosely compacted organic layers, but this index is more widely distributed. DC measures deep, compacted organic layers, again with higher values being dryer/greater risk. This has a left skew and we observed more values on the higher end of the scale. Finally, ISI (Initial Spread Index) measures how fast a fire may spread once ignited. These values are skewed right and grouped towards the lower end of the scale. Since each of these indexes measure different sources of ignition/spread that can affect the occurrrence/spread of a fire, they are all incredibly helpful when it comes to predicting a fire.
+
+
 TO DO:
 * Train your first model
 * Evaluate your model
