@@ -2,7 +2,14 @@ import pandas as pd
 import numpy as np
 import scipy.stats as scipy
 
-"""
+def get_observations_given_queries(
+        data: pd.DataFrame,
+        query_list: list[str],
+        index_list: list[list[int]],
+        print_output: bool = False
+    ) -> dict[str, np.array]:
+
+    """
     Given a dataframe, this function returns a dict representing the counts of observations 
     that fall within each specified range in the `indices` list for each query variable given 
     from the query_list.
@@ -13,15 +20,9 @@ import scipy.stats as scipy
         
     indices : list[int]
         List of list of indices defining the specified ranges of the `query_variable`. 
-"""
-def get_observations_given_queries(
-        data: pd.DataFrame,
-        query_list: list[str],
-        index_list: list[list[int]],
-        print_output: bool = False
-    ) -> dict[str, np.array]:
+    """
 
-    assert(len(query_list) == len(index_list)), "The length of the query list and index list must be equal"
+    assert len(query_list) == len(index_list), "The length of the query list and index list must be equal"
 
     observation_counts = {query: [] for query in query_list}
 
@@ -51,7 +52,13 @@ def get_observations_given_queries(
 
     return observation_counts
 
-"""
+def get_probabilities_given_queries(
+        data: pd.DataFrame,
+        query_list: list[str],
+        index_list: list[list[int]],
+        print_output: bool = False
+    ) -> dict[str, list[int]]:
+    """
     Given a dataframe, this function returns a dict representing the probabilities of observations 
     given a range in the `indices` list for each query variable given from the query_list.
 
@@ -61,13 +68,7 @@ def get_observations_given_queries(
         
     indices : list[int]
         List of list of indices defining the specified ranges of the `query_variable`. 
-"""
-def get_probabilities_given_queries(
-        data: pd.DataFrame,
-        query_list: list[str],
-        index_list: list[list[int]],
-        print_output: bool = False
-    ) -> dict[str, list[int]]:
+    """
 
     assert(len(query_list) == len(index_list)), "The length of the query list and index list must be equal"
 
@@ -92,7 +93,14 @@ def get_probabilities_given_queries(
 
     return conditional_probabilities
 
-def get_quartiles(data, column):
+def get_quartiles(
+        data: pd.DataFrame,
+        column: str
+    ):
+    """
+    Given a dataframe, retrieves the values indicating the 25th, 50th, and 75th percentiles
+    """
+
     # Calculate the quartiles (Q1, Q2, Q3)
     quartile25 = data[column].quantile(0.25)
     quartile50 = data[column].quantile(0.50)
