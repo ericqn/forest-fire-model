@@ -46,6 +46,13 @@ First we thought it would be helpful to look at the distributions of each of our
 ![isi](https://github.com/user-attachments/assets/8de0d2f2-fe6e-4672-bc38-6d22816b032f)\
 As you can see, although many of these models draw from the same metrics (wind, humidity, temperature, precipitation), they're distributed quite differently. This tells us they may each give us unique insights as to the risk of fire that day.\
 From what we've researched, we know that a high FFMC means litter and other cured fine fuels are more likely to ignite, so our data heavily observes instances where risk of ignition is high. DMC assesses the dryness and risk of ignition of loosely compacted organic layers, but this index is more widely distributed. DC measures deep, compacted organic layers, again with higher values being dryer/greater risk. This has a left skew and we observed more values on the higher end of the scale. Finally, ISI (Initial Spread Index) measures how fast a fire may spread once ignited. These values are skewed right and grouped towards the lower end of the scale. Since each of these indexes measure different sources of ignition/spread that can affect the occurrrence/spread of a fire, they are all incredibly helpful when it comes to predicting a fire.
+<br/><br/>
+![occ](https://github.com/user-attachments/assets/c868ab8f-e0f3-4881-b3f9-c32480ada66b)
+![month](https://github.com/user-attachments/assets/12b1ccf3-37e5-45ec-8de6-69f28d06e352)\
+Another interesting aspect of our data is the observation frequency of fires in general and what months are more prevalent in our data. As you can see, the occurence of fire vs. no fire is about equal. Meanwhile, for the months represented, we see August and September have a much higher frequency than other months. We assume this to be because August and September are peak fire seasons, so collecting fire-related data is more crucial during these periods.
+<br/><br/>
+<img width="463" alt="Screenshot 2025-02-16 at 1 36 39 PM" src="https://github.com/user-attachments/assets/c9db5d29-2f12-474b-bb50-51223f32b63d" />\
+Finally, for missingness we've determined that no column in our data has missing values that need to be addressed, making it easier to train our model.
 
 
 TO DO:
