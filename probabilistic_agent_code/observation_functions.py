@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 import scipy.stats as scipy
+import pandas as pd
+import matplotlib.pyplot as plt
 
 def get_observations_given_queries(
         data: pd.DataFrame,
@@ -108,3 +110,20 @@ def get_quartiles(
 
     # Return the quartiles as a 3-tuple
     return (quartile25,quartile50, quartile75)
+
+
+def display_histogram(data: pd.DataFrame, column: str):
+    """
+    Given a dataframe and column, displays column distribution as histogram.
+    """
+    if column not in data.columns:
+        raise ValueError(f"Column '{column}' not found in the dataframe")
+    
+    plt.figure(figsize=(10, 6))
+    plt.hist(data[column], bins=30, alpha=0.7, edgecolor='black')
+    plt.title(f"Distribution of {column}")
+    plt.xlabel(column)
+    plt.ylabel("Frequency")
+    plt.grid(True)
+    plt.show()
+    return
