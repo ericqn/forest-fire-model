@@ -120,7 +120,7 @@ def display_histogram(data: pd.DataFrame, column: str):
         raise ValueError(f"Column '{column}' not found in the dataframe")
     
     plt.figure(figsize=(10, 6))
-    plt.hist(data[column], bins=30, alpha=0.7, edgecolor='black')
+    plt.hist(data[column], bins=60, alpha=0.7, edgecolor='black')
     plt.title(f"Distribution of {column}")
     plt.xlabel(column)
     plt.ylabel("Frequency")
