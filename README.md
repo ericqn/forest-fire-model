@@ -55,7 +55,7 @@ Another interesting aspect of our data is the observation frequency of fires in 
 Finally, for missingness we've determined that no column in our data has missing values that need to be addressed, making it easier to train our model.
 
 # Conclusion
-Our probabilistic model's initial iteration effectively identifies important trends in fire occurrence depending on environmental conditions. The analysis shows that FFMC plays a significant role, and levels between 85 and 95 significantly increase the likelihood of a fire. The highest likelihood of fire occurs within the range of 90 ≤ FFMC < 95, where 74.44% of observations indicate fire presence. Similarly, DMC demonstrates a strong correlation with fire occurrence, with fire probability rising as DMC increases. The highest probability (88.89%) is observed for DMC values greater than 200. 
+Our first probabilistic model effectively identifies important trends in fire occurrence depending on environmental conditions. The analysis shows that FFMC plays a significant role, and levels between 85 and 95 significantly increase the likelihood of a fire. The highest likelihood of fire occurs within the range of 90 ≤ FFMC < 95, where 74.44% of observations indicate fire presence. Similarly, DMC demonstrates a strong correlation with fire occurrence, with fire probability rising as DMC increases. The highest probability (88.89%) is observed for DMC values greater than 200. 
 Our findings are further supported by seasonal trends, since fire incidents peak in August and September, which corresponds with the region's dry season. Additionally, the dataset is well-balanced between fire and no-fire cases.
 
 
