@@ -29,7 +29,9 @@ What kind of probabilistic model is it?
 
 What kind of agent is it? Goal based? Utility based? etc. 
  * Given our goals and data available, we believe it is most appropriate to utilize a goal-based agent, given our emphasis on predicting future events given the partially observable knowledge of its dynamic environment.
+
 Describe how your agent is set up and where it fits in probabilistic modeling
+* Many of our variables, such as FFMC, DMC, humidity, and wind speed, are continuous, so we indexed them to make them compatible with our probabilistic model. We structured these continuous variables into predefined bins that allowed us to compute probabilities more effectively.
 
 # Initial Belief Network
 We based our conditional probability table computations and our model off of the constructed belief network. The dependencies of the nodes to one another are based off of a combination of our own intuition and how certain variables (like the weather indexes) are calculated.
