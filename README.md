@@ -10,11 +10,12 @@ Our data maps out Montesinho park, a region in North Eastern Portugal on an X,Y 
 * `Month`
 * `Day`
 * Fire Weather Index Metrics
-  * `FFMC` (Continuous)
-  * `DMC` (Integer)
-  * `DC` (Continuous)
-  * `ISI` (Continuous)
+  * `FFMC` (Continuous): Measures moisture content of litter and other fine fuels, higher --> fuels ignite/burn easier
+  * `DMC` (Integer): Measures moisture content of loosely compacted organic material in the forest, higher --> material ignites/burns easier
+  * `DC` (Continuous): Measuress moisture content of forest fuels, higher --> dryer/more risk
+  * `ISI` (Continuous): Initial Spread Index, measures how fast a fire may spread once ignited
 * Total burned area
+
 
 As noted on the website from which the dataset was pulled from, given that the output skews towards 0.0, a logarithmic transformation is recommended. The attached research paper applied a transformation of $f(x) = ln(x+1)$.
 Summary and Goal of our proposed agent: Given that we are able to observe the state of the forest (i.e. the aforementioned metrics) for everyday recorded, our goal is to predict the area burned of the forest for the following day. That is to say that our agent aims to predict the area that will burn on a subsequent day, given the metrics currently available to it.
