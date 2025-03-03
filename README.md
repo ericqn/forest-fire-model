@@ -9,6 +9,7 @@ Our data maps out Montesinho park, a region in North Eastern Portugal on an X,Y 
 * `Relative Humidity`
 * `Month`
 * `Day`
+  UPDATE:
 * Fire Weather Index Metrics
   * `FFMC` (Continuous): Measures moisture content of litter and other fine fuels, higher --> fuels ignite/burn easier
   * `DMC` (Integer): Measures moisture content of loosely compacted organic material in the forest, higher --> material ignites/burns easier
