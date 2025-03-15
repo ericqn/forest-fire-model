@@ -95,3 +95,43 @@ def calculate_naive_bayes(conditional_variables,FFMC_condlist,DMC_condlist,DC_co
     conditional_target_var = target_variable_prob * conditional_FFMC *conditional_DMC * conditional_DC * conditional_ISI
 
     return conditional_target_var
+
+
+def max_log_likelihood(
+        fire: bool,
+        indices: dict[str: list],
+        data_array: np.array
+):
+    """
+    Given severity indices (ranging from 0-5) on FFMC, DMC, DC, ISI, this function aims to calculate the 
+    probability of a fire based on the indices using the maximum log likelihood algorithm
+
+    Example Usage:
+
+    indices = {'FFMC': [3, 4], 'DMC': [4, 5], 'DC': [3, 4, 5], 'ISI': [3, 4]} \\
+    fire_array = fire_dataloader('data/forestfires.csv', to_array=True) \\
+    max_log_likelihood(True, indices, fire_array) \\
+    --> 0.5356
+    """
+    count_parents_and_fire = 0
+    count_parents = 0
+
+    # Compute P(fire | FFMC, DMC, DC, ISI) by counting data
+    for item in data_array:
+        item_FFMC = item[0]
+        item_DMC = item[1]
+        item_DC = item[2]
+        item_ISI = item[3]
+        item_fire = item[4]
+
+        if item_FFMC in indices['FFMC'] and item_DMC in indices['DMC'] and \
+            item_DC in indices['DC'] and item_ISI in indices['ISI']:
+            count_parents += 1
+            if item_fire == fire:
+                count_parents_and_fire += 1
+
+    if count_parents == 0:
+        print('Not enough data')
+        return 0
+    else:
+        return count_parents_and_fire / count_parents
