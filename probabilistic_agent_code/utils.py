@@ -107,4 +107,41 @@ def get_quartiles(
     quartile75 = data[column].quantile(0.75)
 
     # Return the quartiles as a 3-tuple
-    return (quartile25,quartile50, quartile75)
+    return (quartile25, quartile50, quartile75)
+
+def fire_dataloader(
+        data_path: str,
+        to_array: bool
+    ):
+    """
+    Loads a T x 5 dataframe (or numpy array), where T is the number of observations
+
+    We convert the raw index values into a severity value. For example, For example, if a row has an 
+    FFMC of 57, it would be replaced with a 1 as it falls in the bin with index 1 (50 to 80).
+
+    Each observation contains the severity values of the specified key variables: FFMC, DMC, DC, ISI
+    and a boolean indicating whether or not a fire occurred (1 if 'area' > 0 and 0 otherwise).
+    """
+
+    raw_data_frame = pd.read_csv(data_path)
+    key_variables = ['FFMC', 'DMC', 'DC', 'ISI', 'area']
+
+    bin_FFMC = [0,50,80,91,95,float('inf')]
+    bin_DMC = [0,1,10,60,200,float ('inf')]
+    bin_DC = [0,20,50,425,750, float('inf')]
+    bin_ISI = [0,1,5,15,50,float('inf')]
+
+    modified_data_frame = raw_data_frame[key_variables].copy()
+
+    modified_data_frame['FFMC'] = np.digitize(modified_data_frame['FFMC'], bins=bin_FFMC, right=True)
+    modified_data_frame['DMC'] = np.digitize(modified_data_frame['DMC'], bins=bin_DMC, right=True)
+    modified_data_frame['DC'] = np.digitize(modified_data_frame['DC'], bins=bin_DC, right=True)
+    modified_data_frame['ISI'] = np.digitize(modified_data_frame['ISI'], bins=bin_ISI, right=True)
+    modified_data_frame['area'] = np.where(modified_data_frame['area'] > 0, 1, 0)
+
+    modified_data_frame = modified_data_frame.rename(columns={'area': 'Fire?'})
+    
+    if to_array:
+        return modified_data_frame.to_numpy()
+    else:
+        return modified_data_frame

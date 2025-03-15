@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+
 """
 Given a dataframe, this function aims to calculate the conditional probability 
 of a given variable, x. 
