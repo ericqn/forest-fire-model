@@ -73,6 +73,8 @@ over time.
 # Conclusion
 Our first probabilistic model effectively identifies important trends in fire occurrence depending on environmental conditions. The analysis shows that FFMC plays a significant role, and levels between 85 and 95 significantly increase the likelihood of a fire. The highest likelihood of fire occurs within the range of 90 ≤ FFMC < 95, where 74.44% of observations indicate fire presence. Similarly, DMC demonstrates a strong correlation with fire occurrence, with fire probability rising as DMC increases. The highest probability (88.89%) is observed for DMC values greater than 200. 
 Our findings are further supported by seasonal trends, since fire incidents peak in August and September, which corresponds with the region's dry season. Additionally, the dataset is well-balanced between fire and no-fire cases.
+<br><br>
+Because our data is complete, we decided to use Maximum Likelihood for our EM updates instead of the traditional EM Algorithm. This makes sense because in traditional EM we compute the expected value of the missing data given the observed data and current parameter estimates. With no missing data, this is unnecessary and we can explicitly write the likelihood function and maximize it.
 
 
 TO DO:
