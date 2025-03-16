@@ -76,6 +76,9 @@ Our findings are further supported by seasonal trends, since fire incidents peak
 <br><br>
 Because our data is complete, we decided to use Maximum Likelihood for our EM updates instead of the traditional EM Algorithm. This makes sense because in traditional EM we compute the expected value of the missing data given the observed data and current parameter estimates. With no missing data, this is unnecessary and we can explicitly write the likelihood function and maximize it.
 
+<br><br>
+### Comparing Models
+Since our data is abundant and complete, we used Maximum Likelihood for EM updates to improve the accuracy of our model. This is different than our Milestone 2 model which only relies on Naive Bayes'.
 
 TO DO:
 * Train your first model
