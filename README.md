@@ -57,10 +57,11 @@ From what we've researched, we know that a high FFMC means litter and other cure
 Another interesting aspect of our data is the observation frequency of fires in general and what months are more prevalent in our data. As you can see, the occurence of fire vs. no fire is about equal. Meanwhile, for the months represented, we see August and September have a much higher frequency than other months. We assume this to be because August and September are peak fire seasons, so collecting fire-related data is more crucial during these periods.
 <br/><br/>
 <img width="463" alt="Screenshot 2025-02-16 at 1 36 39 PM" src="https://github.com/user-attachments/assets/c9db5d29-2f12-474b-bb50-51223f32b63d" />\
-Finally, for missingness we've determined that no column in our data has missing values that need to be addressed, making it easier to train our model.
+For missingness we've determined that no column in our data has missing values that need to be addressed, making it easier to train our model.
 
+MS3 Update: For data pre-processing, we separated the variables of FFMC, DMC, DC, and ISI into five distinct ranges, with each range assigned to a number between 0 and 4. The lower the number, the less severe the variable was. For example, if our FFMC were between 50 and 80, it would have been categorized as a severity level 1. This process was done across all entries as it allowed us to turn continuous data into discrete data, which made it easier for us to work with it. The ranges we used were obtained from category ranges defined by the Department of Agriculture of Ireland and Resource Watch, an organization partnered with the United Nations Development program that tracks and reports metrics such as FFMC, DMC, DC, and ISI. We further separated our data into two ranges: low severity and high severity. When a variable was designated a severity score of an inclusive range between 0 and 2, we classified it as a low-severity variable. In contrast, variables with a severity score of 3 or 4 were designated as high-severity variables.
 
-# Update: First Iteration of Training
+# MS2 Update: First Iteration of Training
 Our first iteration of training we used in milestone 2 was a Naive Bayes approach.
 In the 7th cell of the agent_playground jupyter notebook, we calculated the conditional probability
 for the variables of FFMC, DMC, DC, and ISI given if an area was burned or not. After calculating and storing our conditional probability, we demonstrated in cell 9
@@ -70,11 +71,20 @@ For our next approach towards training, we believe it is more appropriate to uti
 EM algorithm as we are attempting to find the probability of an event occuring as we are given more and more information
 over time.
 
+# MS3 Update: Second Iteration of Training
+Because our data is complete, we used Maximum Likelihood instead of the traditional EM Algorithm for our EM updates. This makes sense because, in conventional EM, we compute the expected value of the missing data based on the observed data and current parameter estimates. With no missing data, this is unnecessary, and we can explicitly write the likelihood function and maximize it. This allows us to generate a more accurate CPT of our data. This effectively allows us to initialize and prepare our CPT for future observations. 
+
+In cell 30 of agent_playground.ipynb, we demonstrate our data pre-processing method that imports our data set, converting all continuous variables into discrete variables based on the range they fall under.
+
+In cell 29, we demonstrate that our maximum likelihood function can calculate the likelihood of the conditional probability of a fire occurring given a range for each of the 4 variables.
+
+As our model aims to become more accurate as it accrues more data, each new day (entry) can be interpreted as the i-th + 1 observation, by which, in a further iteration of our model,  we could then update the CPT. A possible area of maximizing efficiency in such an approach would be to store significant counts, such as the number of observations in which a variable falls under a specific severity or range. In an ith + 1 iteration, we would only need to update the counts for which the observation's variables fall under. For example, if our observation contains an instance of a DMC variable falling under the severity score of 2, we would increment the number of counts of DMC variables with a severity score of 2. In such an approach, instead of parsing our data each time we desired to calculate a Maximum Likelihood, we could instead calculate it using our already initialized counts.
+
 # Conclusion
 Our first probabilistic model effectively identifies important trends in fire occurrence depending on environmental conditions. The analysis shows that FFMC plays a significant role, and levels between 85 and 95 significantly increase the likelihood of a fire. The highest likelihood of fire occurs within the range of 90 ≤ FFMC < 95, where 74.44% of observations indicate fire presence. Similarly, DMC demonstrates a strong correlation with fire occurrence, with fire probability rising as DMC increases. The highest probability (88.89%) is observed for DMC values greater than 200. 
 Our findings are further supported by seasonal trends, since fire incidents peak in August and September, which corresponds with the region's dry season. Additionally, the dataset is well-balanced between fire and no-fire cases.
 <br><br>
-Because our data is complete, we decided to use Maximum Likelihood for our EM updates instead of the traditional EM Algorithm. This makes sense because in traditional EM we compute the expected value of the missing data given the observed data and current parameter estimates. With no missing data, this is unnecessary and we can explicitly write the likelihood function and maximize it.
+
 
 <br><br>
 ### Comparing Models
