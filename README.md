@@ -83,12 +83,15 @@ As our model aims to become more accurate as it accrues more data, each new day 
 # Conclusion
 Our first probabilistic model effectively identifies important trends in fire occurrence depending on environmental conditions. The analysis shows that FFMC plays a significant role, and levels between 85 and 95 significantly increase the likelihood of a fire. The highest likelihood of fire occurs within the range of 90 ≤ FFMC < 95, where 74.44% of observations indicate fire presence. Similarly, DMC demonstrates a strong correlation with fire occurrence, with fire probability rising as DMC increases. The highest probability (88.89%) is observed for DMC values greater than 200. 
 Our findings are further supported by seasonal trends, since fire incidents peak in August and September, which corresponds with the region's dry season. Additionally, the dataset is well-balanced between fire and no-fire cases.
+
+The updated model demonstrates significant progress compared to the initial iteration. A key improvement is the discretization of the continuous fire index variables (FFMC, DMC, DC, and ISI) into five distinct severity levels (0-4). This step transforms the data into a categorical format compatible with Bayesian Networks. The updated model introduces functions designed to compute all probabilities required for our CPT. The addition of Maximum Likelihood further advances the probability calculation process. Furthermore, the model utilizes NumPy arrays for improved efficiency.
 <br><br>
-
-
 <br><br>
 ### Comparing Models
 Since our data is abundant and complete, we used Maximum Likelihood for EM updates to improve the accuracy of our model. This is different than our Milestone 2 model which only relies on Naive Bayes'.
+
+### Potential Improvements
+As our model aims to become more accurate as it accrues more data, each new day (entry) can be seen as the i-th + 1 observation, by which in a further iteration of our model  we could then update the CPT. A possible area of maximizing efficiency in such an approach would be to store important counts, such as the number of observations in which a variable falls under a specific severity or range. In an ith + 1 iteration, we would only need to update the the counts for which the observation's variables fall under. For example, if our observation contains an instance of a DMC variable falling under in the severity score of 2, we would increment the number of counts of a DMC variables with a severity score of 2. In such an approach, instead of parsing our data each time we desired to calculate a Maximum Likelihood, we could instead calculate it using our already initalized counts.
 
 TO DO:
 * Train your first model
